@@ -29,7 +29,6 @@ public:
 	int ReadCommPort( unsigned char *message, DWORD length);
 	int WriteCommPort( unsigned char* message, DWORD dwLength);
 	bool IsCommPortOpen();
-	int CRsPort::CompactReadCommPort(unsigned char *message, DWORD length);
 	CRsPort(CString m_portName);
     CRsPort( CString m_portName, DWORD BaudRate, BYTE ByteSize, BYTE Parity, BYTE StopBits );
 	virtual ~CRsPort();

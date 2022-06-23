@@ -147,12 +147,6 @@ int CRsPort::ReadCommPort(unsigned char *message, DWORD length)
    return dwReadLength;
 }
 
-int CRsPort::CompactReadCommPort(unsigned char *message, DWORD length)
-{
-
-	return 0;
-}
-
 bool CRsPort::IsCommPortOpen()
 {
 	if(m_Connect)

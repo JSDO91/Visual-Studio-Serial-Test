@@ -31,9 +31,9 @@ void SerialData::Check_Data(unsigned int InitData)
 }
 
 
-unsigned char* SerialData::AddrTxDataBuf()
+unsigned char* SerialData::AddrTxDataBuf(unsigned int idx)
 {
-	return &tx_data[0];
+	return &tx_data[idx];
 }
 
 unsigned char* SerialData::AddrRxDataBuf()
@@ -57,6 +57,15 @@ void SerialData::SaveWrongData(unsigned int WrongDataLength)
 	rx_data_wrong_num++;
 	if (rx_data_wrong_num > 127)
 		rx_data_wrong_num = 0;
+}
+
+void SerialData::MakeTxDataPattern(unsigned char init_val)
+{
+	unsigned int idx = 0;
+	for (idx = 0; idx < MAX_SERIAL_DATA_SIZE; idx++)
+	{
+		tx_data[idx] = idx + init_val;
+	}
 }
 
 void SerialData::Print()

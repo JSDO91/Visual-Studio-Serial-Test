@@ -17,11 +17,12 @@ class SerialData
 		SerialData();
 		~SerialData();
 		void Check_Data(unsigned int InitData);
-		unsigned char* AddrTxDataBuf();
+		unsigned char* AddrTxDataBuf(unsigned int idx);
 		unsigned char* AddrRxDataBuf();
 		void IncreaseRxPktNum();
 		unsigned int GetRxPktNum();
 		void SaveWrongData(unsigned int WrongDataLength);
+		void MakeTxDataPattern(unsigned char init_val);
 		void Print();
 };
 

@@ -47,18 +47,23 @@ int main()
 	QueryPerformanceFrequency(&gts_freq);
 	printf("# (tick/sec: %lld)\r\n", gts_freq.QuadPart);
 
+	//CString portname = _T("COM8");
 	CString portname = _T("COM6");
 	CRsPort serialport(portname);
 	SerialData serialdata;
 
 	unsigned int readLen;
 	
-	serialport.WriteCommPort(serialdata.AddrTxDataBuf(), 1);
+	serialdata.MakeTxDataPattern(0);
+	serialport.WriteCommPort(serialdata.AddrTxDataBuf(0), 240);
+
+//	Sleep(1000);
+
+//	serialdata.MakeTxDataPattern(1);
+//	serialport.WriteCommPort(serialdata.AddrTxDataBuf(0), 240);
 
 	while (1)
 	{
-
-
 		readLen = serialport.ReadCommPort(serialdata.AddrRxDataBuf(), MAX_SERIAL_DATA_SIZE);
 
 		if (readLen == MAX_SERIAL_DATA_SIZE)
@@ -69,7 +74,8 @@ int main()
 			serialdata.Check_Data(serialdata.GetRxPktNum());
 			serialdata.IncreaseRxPktNum();
 
-			if (serialdata.GetRxPktNum() == 1720)
+			//if (serialdata.GetRxPktNum() == 1720)
+			if (serialdata.GetRxPktNum() == 1200)
 			{
 				QueryPerformanceCounter(&gts_r[gts_n++]);
 				break;

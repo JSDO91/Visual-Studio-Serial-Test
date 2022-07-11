@@ -29,9 +29,11 @@ public:
 	int ReadCommPort( unsigned char *message, DWORD length);
 	int WriteCommPort( unsigned char* message, DWORD dwLength);
 	bool IsCommPortOpen();
+	CRsPort();
 	CRsPort(CString m_portName);
     CRsPort( CString m_portName, DWORD BaudRate, BYTE ByteSize, BYTE Parity, BYTE StopBits );
 	virtual ~CRsPort();
+	void CRsPort_USER_Init(CString m_portName);
 
 protected:
 	void CloseCommPort(void);
@@ -40,5 +42,6 @@ protected:
     OVERLAPPED     osWrite;
     OVERLAPPED     osRead;
 	DCB            dcb_setup;
+	CString			port_name;
 
 };

@@ -17,6 +17,8 @@ class SerialData
 		unsigned int RxDataNum;
 		unsigned int RxDataWrongCnt;
 		unsigned int wrong_data[MAX_SEIAL_WRONG_DATA];
+		unsigned char PreInitData;
+		unsigned int DropDataCnt;
 		
 	public:
 		SerialData();
@@ -32,5 +34,6 @@ class SerialData
 		unsigned int GetCmpDataGoodCnt();
 		unsigned int GetCmpDataBadCnt();
 		unsigned int GetWrongDataCnt();
+		unsigned int GetDropDataCnt();
 };
 

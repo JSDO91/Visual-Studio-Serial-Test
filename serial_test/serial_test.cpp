@@ -9,7 +9,7 @@
 
 #define TS_RATIO		(0.0001)	// for ms
 #define nMAX_USB		4
-#define WORKING_SECOND	30*60
+#define WORKING_SECOND	10*60
 
 
 LARGE_INTEGER gts_freq, gts_r[100];
@@ -62,7 +62,7 @@ int main()
 		printf("Find Device Num : %d\r\n",result);
 	}
 // open COM PORT
-	for (deviceIdx = 0; deviceIdx < result; deviceIdx++)
+	for (deviceIdx = 0; deviceIdx < nMAX_USB; deviceIdx++)
 	{
 		USB_DONGLE_COM_PORTS[deviceIdx].CRsPort_USER_Init(USB_COM_PORT[deviceIdx]);
 	}
@@ -328,7 +328,7 @@ void PrintPerformaceResult(unsigned char Idx, CRsPort* portptr, SerialData* seri
 {
 	printf("###################Device[%d]###############################\r\n",Idx);
 	printf("Rx Packet Num 			: %d\r\nRx Bytes Num 			: %d\r\n",serialdataptr->GetRxPktNum(),(serialdataptr->GetRxPktNum())*MAX_SERIAL_DATA_SIZE);
-	printf("Compare Data Good Cnt 	: %d\r\nCompare Data Bad Cnt 	: %d\r\n",serialdataptr->GetCmpDataGoodCnt(),serialdataptr->GetCmpDataBadCnt());
+	printf("Compare Data Good Cnt 	: %d\r\nCompare Data Bad Cnt 	: %d\r\nDrop Data Cnt 		: %d\r\n",serialdataptr->GetCmpDataGoodCnt(),serialdataptr->GetCmpDataBadCnt(), serialdataptr->GetDropDataCnt());
 	printf("Wrong Data Length Cnt	: %d\r\n",serialdataptr->GetWrongDataCnt());
 	printf("############################################################\r\n");
 }

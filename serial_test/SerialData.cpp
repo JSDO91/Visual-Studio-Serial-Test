@@ -37,6 +37,11 @@ void SerialData::Check_Data(unsigned int InitData)
 		else
 			DataGoodCnt++;
 	}
+
+	if (((PreInitData + 1) & 0xFF) != init)
+		DropDataCnt++;
+
+	PreInitData = init;
 }
 
 
@@ -103,4 +108,9 @@ unsigned int SerialData::GetCmpDataBadCnt()
 unsigned int SerialData::GetWrongDataCnt()
 {
 	return  this->RxDataWrongCnt;	
+}
+
+unsigned int SerialData::GetDropDataCnt()
+{
+	return  this->DropDataCnt;
 }
